@@ -15,16 +15,13 @@ class LoginTest extends TestCase
 
     public function testLoginUser(): void
     {
-        $password = $this->faker->password(8);
         /** @var User $user */
-        $user = User::factory()
-            ->state(['password' => Hash::make($password)])
-            ->create();
+        $user = User::factory()->create();
 
         $response = $this->postJson('/api/users/login', [
             'user' => [
                 'email' => $user->email,
-                'password' => $password,
+                'password' => 'password',
             ],
         ]);
 
@@ -47,11 +44,8 @@ class LoginTest extends TestCase
 
     public function testLoginUserFail(): void
     {
-        $password = 'knownPassword';
         /** @var User $user */
-        $user = User::factory()
-            ->state(['password' => Hash::make($password)])
-            ->create();
+        $user = User::factory()->create();
 
         $response = $this->postJson('/api/users/login', [
             'user' => [

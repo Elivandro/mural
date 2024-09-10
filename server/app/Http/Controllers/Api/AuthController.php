@@ -86,7 +86,9 @@ class AuthController extends Controller
         Auth::shouldUse('web');
 
         if (Auth::attempt($request->validated())) {
-            return new UserResource(Auth::user());
+            return response()->json([
+                'user' => new UserResource(Auth::user())
+            ], 200);
         }
 
         return response()->json([

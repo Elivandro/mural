@@ -19,7 +19,7 @@ class UserResource extends BaseUserResource
      * @param  \Illuminate\Http\Request  $request
      * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return array_merge(parent::toArray($request), [
             'email' => $this->resource->email,

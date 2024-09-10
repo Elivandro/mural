@@ -32,9 +32,14 @@ class NewUserRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => [
                 'required', 'string', 'max:255',
-                // we can set additional password requirements below
+                'confirmed',
                 Password::min(8),
             ],
+            'password_confirmation' => [
+                'required',
+                'string',
+                'max:255'
+            ]
         ];
     }
 

@@ -21,7 +21,8 @@ class RegisterTest extends TestCase
             'user' => [
                 'username' => $username,
                 'email' => $email,
-                'password' => $this->faker->password(8),
+                'password' => 'password',
+                'password_confirmation' => 'password',
             ],
         ]);
 
@@ -64,7 +65,8 @@ class RegisterTest extends TestCase
             'user' => [
                 'username' => $user->username,
                 'email' => $user->email,
-                'password' => $this->faker->password(8),
+                'password' => 'password',
+                'password_confirmation' => 'password',
             ],
         ]);
 
@@ -86,6 +88,7 @@ class RegisterTest extends TestCase
                     'username' => 123,
                     'email' => [],
                     'password' => null,
+                    'password_confirmation' => null,
                 ],
             ], $errors],
             'empty strings' => [[
@@ -93,6 +96,7 @@ class RegisterTest extends TestCase
                     'username' => '',
                     'email' => '',
                     'password' => '',
+                    'password_confirmation' => '',
                 ],
             ], $errors],
             'bad username' => [['user' => ['username' => 'user n@me']], 'username'],
